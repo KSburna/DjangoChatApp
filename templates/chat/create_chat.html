@@ -23,4 +23,14 @@
             </form>
         </div>
     </div>
+    <script>
+        $('#content').on('input', function () {
+            var input = $(this);
+            if (input.val().length > 0) {
+                input.removeClass("is-invalid").addClass("is-valid");
+            } else {
+                input.removeClass("is-valid").addClass("is-invalid");
+            }
+        });
+    </script>
 {% endblock %}

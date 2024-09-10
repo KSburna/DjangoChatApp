@@ -141,3 +141,4 @@ EMAIL_HOST_USER = 'Fentoluwa@gmail.com'
 EMAIL_HOST_PASSWORD = 'agqh ptee rynr fgek'
 
 LOGIN_URL = '/login/'
+LOGOUT_REDIRECT_URL = '/login/'
