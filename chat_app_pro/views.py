@@ -5,7 +5,7 @@ from .models import Message
 from django.contrib.auth.models import User
 from django.db import models
 from django.contrib.auth import login as auth_login, get_user_model
-from .forms import CustomAuthUserCreationForm, CustomAuthUserLoginForm
+from .forms import CustomAuthUserCreationForm, CustomAuthUserLoginForm, UserDetailsForm
 
 
 @login_required
@@ -72,6 +72,7 @@ def chat_detail(request, user_id):
 
     return render(request, 'chat/chat_detail.html', {'chat_user': chat_user, 'messages': messages})
 
+
 def signup_view(request):
     if request.method == 'POST':
         form = CustomAuthUserCreationForm(request.POST)
@@ -94,3 +95,17 @@ def login_view(request):
     else:
         form = CustomAuthUserLoginForm()
     return render(request, 'chat/login.html', {'form': form})
+
+
+@login_required
+def change_user_details(request):
+    user = request.user
+    if request.method == 'POST':
+        form = UserDetailsForm(request.POST, instance=user)
+        if form.is_valid():
+            form.save()
+            return redirect('home')
+    else:
+        form = UserDetailsForm(instance=user)
+
+    return render(request, 'chat/change_user_details.html', {'form': form})
