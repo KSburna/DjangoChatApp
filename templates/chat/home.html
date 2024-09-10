@@ -1,0 +1,34 @@
+{% extends 'base_generic.html' %}
+
+{% block content %}
+  <div class="container">
+    <h2>Welcome, {{ user.first_name }} {{ user.last_name }}!</h2>
+
+    <nav>
+      <ul class="nav nav-pills">
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'create_chat' %}">Create New Chat</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'password_change' %}">Update Password</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+        </li>
+      </ul>
+    </nav>
+
+    <h2>My Chats</h2>
+    <div class="list-group">
+      {% for user, chat in chats.items %}
+        <a href="{% url 'chat_detail' user.id %}" class="list-group-item list-group-item-action">
+          <h5 class="mb-1">{{ user.first_name }} {{ user.last_name }}</h5>
+          <p class="mb-1">{{ chat.last_message.content }}</p>
+          <small>Last message at {{ chat.last_message.timestamp|date:"F j, Y, g:i a" }}</small>
+        </a>
+      {% empty %}
+        <p>No chats found.</p>
+      {% endfor %}
+    </div>
+  </div>
+{% endblock %}
