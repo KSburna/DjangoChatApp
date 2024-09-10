@@ -1,46 +1,4 @@
 {% extends 'base_generic.html' %}
-<style>
-    /* Message Container */
-    .message {
-        margin-bottom: 10px;
-    }
-
-    /* Sent Messages */
-    .message.sent .message-content {
-        text-align: right;
-    }
-
-    .message.sent {
-        background-color: #d1e7dd; /* Light green background for sent messages */
-        border-radius: 10px;
-        padding: 10px;
-        margin-left: 50px; /* Indent for sent messages */
-    }
-
-    /* Received Messages */
-    .message.received .message-content {
-        text-align: left;
-    }
-
-    .message.received {
-        background-color: #f8d7da; /* Light red background for received messages */
-        border-radius: 10px;
-        padding: 10px;
-        margin-right: 50px; /* Indent for received messages */
-    }
-
-    /* Message Content */
-    .message-content p {
-        margin: 0;
-    }
-
-    /* Styling for Timestamp */
-    .message-content small {
-        display: block;
-        color: #888;
-    }
-</style>
-
 {% block content %}
     <div class="container">
         <br>
